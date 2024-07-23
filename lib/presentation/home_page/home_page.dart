@@ -40,6 +40,13 @@ class Home_Page extends StatelessWidget {
         title: const Text('Home Page'),
         centerTitle: true,
       ),
+      body: Center(
+        child: Padding(
+          padding: EdgeInsets.all(16),
+          child: Text(
+              'Welcome ${FireStoreService.instance.currentUser!.displayName}'),
+        ),
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           TextEditingController titleController = TextEditingController();
@@ -81,7 +88,10 @@ class Home_Page extends StatelessWidget {
                           ).toMap,
                         );
 
-                    Navigator.pop(context);
+                    Navigator.of(context).pushNamed('notes');
+
+                    titleController.clear();
+                    descriptionController.clear();
                   },
                   child: const Text('Save'),
                 ),
